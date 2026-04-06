@@ -1,5 +1,5 @@
 import type { Litter } from "@/lib/types";
-import Link from "next/link";
+import { AppLink } from "@/components/AppLink";
 
 const DNA_TESTS = [
   { key: "cea", label: "CEA" },
@@ -83,12 +83,12 @@ export function LitterCard({
             </div>
           )}
         </div>
-        <Link
+        <AppLink
           href={`/breeder/${breederId}/litter/${litter.id}/edit`}
           className="text-xs text-stone-400 hover:text-stone-700"
         >
           Upravit
-        </Link>
+        </AppLink>
       </div>
 
       <dl className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">

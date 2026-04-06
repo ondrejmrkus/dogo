@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { AppLink } from "@/components/AppLink";
 import { getBreeders, getLitters } from "@/lib/store";
 import { PIPELINE_STATUSES, CLOSED_STATUSES, STATUS_LABELS } from "@/lib/types";
 import type { Breeder, Litter } from "@/lib/types";
@@ -48,12 +48,12 @@ export function Dashboard() {
             Sledování chovatelů border kolií
           </p>
         </div>
-        <Link
+        <AppLink
           href="/breeder/new"
           className="rounded-lg bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800 transition-colors"
         >
           + Přidat chovatele
-        </Link>
+        </AppLink>
       </header>
 
       {timelineData.length > 0 && (
@@ -64,9 +64,9 @@ export function Dashboard() {
         <div className="rounded-xl border border-dashed border-stone-300 p-12 text-center">
           <p className="text-stone-500">
             Zatím žádní chovatelé.{" "}
-            <Link href="/breeder/new" className="text-stone-900 underline">
+            <AppLink href="/breeder/new" className="text-stone-900 underline">
               Přidej prvního
-            </Link>
+            </AppLink>
           </p>
         </div>
       ) : (

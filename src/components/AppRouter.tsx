@@ -7,7 +7,7 @@ import { BreederNew } from "@/components/pages/BreederNew";
 import { BreederEdit } from "@/components/pages/BreederEdit";
 import { LitterNew } from "@/components/pages/LitterNew";
 import { LitterEdit } from "@/components/pages/LitterEdit";
-import Link from "next/link";
+import { AppLink } from "@/components/AppLink";
 
 export function AppRouter({ segments }: { segments: string[] }) {
   useStoreSubscription();
@@ -65,9 +65,9 @@ export function AppRouter({ segments }: { segments: string[] }) {
   return (
     <main className="mx-auto max-w-3xl px-4 py-8 text-center">
       <p className="text-stone-500">Stránka nenalezena.</p>
-      <Link href="/" className="mt-4 inline-block text-sm underline">
+      <AppLink href="/" className="mt-4 inline-block text-sm underline">
         Zpět na přehled
-      </Link>
+      </AppLink>
     </main>
   );
 }

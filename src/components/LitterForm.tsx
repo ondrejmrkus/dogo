@@ -2,7 +2,7 @@
 
 import { createLitter, updateLitter, deleteLitter } from "@/lib/store";
 import type { Litter, NewLitter } from "@/lib/types";
-import { useRouter } from "next/navigation";
+import { navigate } from "@/lib/navigation";
 import { FormEvent } from "react";
 
 function Field({
@@ -50,7 +50,6 @@ export function LitterForm({
   breederId: number;
   litter?: Litter;
 }) {
-  const router = useRouter();
   const isEdit = !!litter;
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -101,13 +100,13 @@ export function LitterForm({
     } else {
       createLitter(data);
     }
-    router.push(`/breeder/${breederId}`);
+    navigate(`/breeder/${breederId}`);
   }
 
   function handleDelete() {
     if (!litter || !confirm("Opravdu smazat tento vrh?")) return;
     deleteLitter(litter.id);
-    router.push(`/breeder/${breederId}`);
+    navigate(`/breeder/${breederId}`);
   }
 
   return (
@@ -298,7 +297,7 @@ export function LitterForm({
         </button>
         <button
           type="button"
-          onClick={() => router.back()}
+          onClick={() => navigate("/")}
           className="rounded-lg border border-stone-200 px-4 py-2 text-sm hover:bg-stone-50 transition-colors"
         >
           Zrušit

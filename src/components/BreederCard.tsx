@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { AppLink } from "@/components/AppLink";
 import type { Breeder, Litter } from "@/lib/types";
 
 function formatDate(dateStr: string | null) {
@@ -44,7 +44,7 @@ export function BreederCard({
   const inWindow = isInWindow(pickup ?? null);
 
   return (
-    <Link
+    <AppLink
       href={`/breeder/${breeder.id}`}
       className={`block rounded-lg border p-3 transition-colors hover:border-stone-400 ${
         muted
@@ -89,6 +89,6 @@ export function BreederCard({
           )}
         </div>
       )}
-    </Link>
+    </AppLink>
   );
 }

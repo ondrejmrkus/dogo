@@ -3,7 +3,7 @@
 import { createBreeder, updateBreeder } from "@/lib/store";
 import type { Breeder, NewBreeder, Status } from "@/lib/types";
 import { STATUS_LABELS, PIPELINE_STATUSES, CLOSED_STATUSES } from "@/lib/types";
-import { useRouter } from "next/navigation";
+import { navigate } from "@/lib/navigation";
 import { FormEvent } from "react";
 
 const ALL_STATUSES = [...PIPELINE_STATUSES, ...CLOSED_STATUSES];
@@ -29,7 +29,6 @@ const inputClass =
   "w-full rounded-lg border border-stone-200 px-3 py-2 text-sm focus:border-stone-400 focus:outline-none focus:ring-1 focus:ring-stone-400";
 
 export function BreederForm({ breeder }: { breeder?: Breeder }) {
-  const router = useRouter();
   const isEdit = !!breeder;
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -50,10 +49,10 @@ export function BreederForm({ breeder }: { breeder?: Breeder }) {
 
     if (isEdit) {
       updateBreeder(breeder.id, data);
-      router.push(`/breeder/${breeder.id}`);
+      navigate(`/breeder/${breeder.id}`);
     } else {
       const created = createBreeder(data);
-      router.push(`/breeder/${created.id}`);
+      navigate(`/breeder/${created.id}`);
     }
   }
 
@@ -168,7 +167,7 @@ export function BreederForm({ breeder }: { breeder?: Breeder }) {
         </button>
         <button
           type="button"
-          onClick={() => router.back()}
+          onClick={() => navigate("/")}
           className="rounded-lg border border-stone-200 px-4 py-2 text-sm hover:bg-stone-50 transition-colors"
         >
           Zrušit

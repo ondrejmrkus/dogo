@@ -1,22 +1,21 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { AppLink } from "@/components/AppLink";
+import { navigate } from "@/lib/navigation";
 import { getBreeder, getLittersForBreeder, deleteBreeder } from "@/lib/store";
 import { StatusSwitcher } from "@/components/StatusSwitcher";
 import { LitterCard } from "@/components/LitterCard";
 
 export function BreederDetail({ id }: { id: number }) {
-  const router = useRouter();
   const breeder = getBreeder(id);
 
   if (!breeder) {
     return (
       <main className="mx-auto max-w-3xl px-4 py-8 text-center">
         <p className="text-stone-500">Chovatel nenalezen.</p>
-        <Link href="/" className="mt-4 inline-block text-sm underline">
+        <AppLink href="/" className="mt-4 inline-block text-sm underline">
           Zpět na přehled
-        </Link>
+        </AppLink>
       </main>
     );
   }
@@ -26,17 +25,17 @@ export function BreederDetail({ id }: { id: number }) {
   function handleDelete() {
     if (!confirm(`Opravdu smazat chovatele "${breeder!.kennelName}"?`)) return;
     deleteBreeder(breeder!.id);
-    router.push("/");
+    navigate("/");
   }
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
-      <Link
+      <AppLink
         href="/"
         className="mb-6 inline-flex items-center gap-1 text-sm text-stone-500 hover:text-stone-800"
       >
         &larr; Zpět na přehled
-      </Link>
+      </AppLink>
 
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
@@ -46,12 +45,12 @@ export function BreederDetail({ id }: { id: number }) {
           <p className="text-sm text-stone-500">{breeder.name}</p>
         </div>
         <div className="flex items-center gap-2">
-          <Link
+          <AppLink
             href={`/breeder/${breeder.id}/edit`}
             className="rounded-lg border border-stone-200 px-3 py-1.5 text-sm hover:bg-stone-50 transition-colors"
           >
             Upravit
-          </Link>
+          </AppLink>
           <button
             onClick={handleDelete}
             className="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
@@ -149,12 +148,12 @@ export function BreederDetail({ id }: { id: number }) {
           <h2 className="text-sm font-semibold text-stone-500 uppercase tracking-wide">
             Vrhy
           </h2>
-          <Link
+          <AppLink
             href={`/breeder/${breeder.id}/litter/new`}
             className="rounded-lg bg-stone-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-stone-800 transition-colors"
           >
             + Přidat vrh
-          </Link>
+          </AppLink>
         </div>
         {breederLitters.length === 0 ? (
           <div className="rounded-xl border border-dashed border-stone-300 p-8 text-center">

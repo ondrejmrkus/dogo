@@ -28,8 +28,9 @@ function getSnapshot() {
   return cachedSegments;
 }
 
+const SERVER_SNAPSHOT: string[] = [];
 function getServerSnapshot() {
-  return [] as string[];
+  return SERVER_SNAPSHOT;
 }
 
 export function usePathSegments(): string[] {

@@ -55,6 +55,7 @@ export function BreederCard({
       <div className="mb-1 font-semibold text-sm leading-tight">
         {breeder.kennelName}
       </div>
+      <div className="text-xs text-stone-500">{breeder.name}</div>
 
       {pickup && (
         <div className="flex items-center gap-1.5 text-xs">
